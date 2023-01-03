@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import {useState} from 'react'
 import { db, auth } from '../firebaseconfigu'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import PostCard from './PostCard'
  function Saved() {
   const [user , setUser] = useState('')
   const [savedpost,setSavedpost] = useState([])
@@ -32,9 +33,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth'
     <div>{savedpost.map((e) => {
       return(
         <div key={e.id}>
-        <h1>{e.title}</h1>
-        <p>{e.postText}</p>
-        <p>{e.userEmail}</p>
+        <PostCard e={e}/>
         <button onClick={() =>deleteSavedPost(e.id)}>delete from save</button>
       </div>
       )

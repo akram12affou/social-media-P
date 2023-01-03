@@ -2,7 +2,7 @@ import { addDoc, collection, deleteDoc,doc, getDocs, orderBy, query, Timestamp, 
 import React, {useEffect, useState} from 'react'
 import { db, auth } from '../firebaseconfigu'
 import { onAuthStateChanged } from 'firebase/auth'
-
+import PostCard from './PostCard'
 function Posts() {
   const [arrOfIds , setArrOfIds] = useState([])
   const [posts , setPosts] = useState([])
@@ -89,12 +89,9 @@ function Posts() {
     {posts.map((e) => {
        return(
         <div key={e.id}>
-          <h1>{e.title}</h1>
-          <p>{e.postText}</p>
-          <p>{e.userEmail}</p>
-          <p>{new Date(e.createdAt).toLocaleString('en-GB',{timeZone:'UTC'})}</p>
-          {user && <button onClick={() => addToSavedPosts(e.title,e.postText,e.userEmail,user?.email,e.id)} disabled={arrOfIds.includes(e.id)}>Save the post</button>}
-          {(user && auth?.currentUser?.email == e.userEmail) && <button onClick={() => deletePost(e.id)}>Delete</button>}
+        <PostCard e={e}/>
+        {user && <button onClick={() => addToSavedPosts(e.title,e.postText,e.userEmail,user?.email,e.id)} disabled={arrOfIds.includes(e.id)}>Save the post</button>}
+        {(user && auth?.currentUser?.email == e.userEmail) && <button onClick={() => deletePost(e.id)}>Delete</button>}
         </div>
        )
       })}

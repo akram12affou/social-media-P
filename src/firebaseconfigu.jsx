@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import {getFirestore} from 'firebase/firestore'
 const firebaseConfig = {
-  apiKey: "AIzaSyBf7ZpEYAX8-UWnS8ylvgDqlcyrnDNAtEg",
+  apiKey: import.meta.env.VITE_API_KEY,
   authDomain: "social-media-p-github.firebaseapp.com",
   projectId: "social-media-p-github",
   storageBucket: "social-media-p-github.appspot.com",
